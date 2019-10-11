@@ -1,6 +1,16 @@
 # logistic-demo-laravel
 
 
+### Steps for auth implementation in laravel 6.0 ::
+
+- requirement of php 7.2 or greater
+- laravel 6.0
+- run folloeing commands :
+    - composer require laravel/ui --dev
+    - php artisan ui vue --auth
+    - npm install && npm run dev
+
+
 
 # bash_profile export :
 
