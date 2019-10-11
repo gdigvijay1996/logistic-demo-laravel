@@ -10,6 +10,10 @@
     - php artisan ui vue --auth
     - npm install && npm run dev
 
+### generate fake users data in Users table using seed ::
+- change in database->seeds->DatabaseSeeder.php and run below command
+- php artisan db:seed
+- more info : https://laravel.com/docs/master/seeding
 
 
 # bash_profile export :
