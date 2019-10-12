@@ -41,7 +41,7 @@ class UsersController extends Controller
 
     public function removeUser(User $user)
     {
-        Mail::to('digvijay@logisticinfotech.co.in')->send(new TestMail($user));
+        // Mail::to('digvijay@logisticinfotech.co.in')->send(new TestMail($user));
         $user->delete();
         return response()->json(['success' => 'user removes successfully...!!!'], 200);
     }

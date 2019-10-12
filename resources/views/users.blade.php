@@ -80,6 +80,7 @@
 
     <script>
         var SITEURL = "{{URL::to('')}}";
+        // var SITEURL = {{ url('/') }};
         var dataTable;
         var selected_id;
 
