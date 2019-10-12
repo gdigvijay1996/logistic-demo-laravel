@@ -13,7 +13,25 @@
 ### generate fake users data in Users table using seed ::
 - change in database->seeds->DatabaseSeeder.php and run below command
 - php artisan db:seed
-- more info : https://laravel.com/docs/master/seeding
+- more info : (https://laravel.com/docs/master/seeding)
+
+### install yajara data-tables using below command :: 
+- composer require yajra/laravel-datatables:^1.5
+- configuration : 
+    - Open the file config/app.php and then add following service provider.
+        'providers' => [
+            ...
+            Yajra\DataTables\DataTablesServiceProvider::class,
+        ],
+        'aliases' => [
+	        ....
+	        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        ]
+    - After completing the step above, use the following command to publish configuration & assets:
+        php artisan vendor:publish --tag=datatables
+        
+- for more info refer below link : 
+  (https://yajrabox.com/docs/laravel-datatables/master/installation)
 
 
 # bash_profile export :
