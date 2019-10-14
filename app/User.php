@@ -36,4 +36,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Accessor || Mutator get fullname example
+    public function getFullNameAttribute()
+    {
+        return "{$this->name} {$this->email}";
+    }
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Users List</title>
+    <title>New Users List</title>
 
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
@@ -23,13 +23,16 @@
 <body>
 
     <div class="container">
-        <h1>Users List</h1>
-        <table class="table table-bordered data-table" id="laravel_datatable">
+        <h1>New Users List</h1>
+        <a href="{!! url('/home/new-users/add') !!}" class="m-2 btn btn-outline-info btn-sm">Add New User</a>
+        <table class="table table-bordered data-table" id="users_datatable">
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Mobile number</th>
+                    <th>Referance code</th>
                     <th>#</th>
                     <th>#</th>
                     <!-- <th width="100px">Action</th> -->
@@ -42,40 +45,14 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Mobile number</th>
+                    <th>Referance code</th>
                     <th>#</th>
                     <th>#</th>
                     <!-- <th width="100px">Action</th> -->
                 </tr>
             </tfoot>
         </table>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form id="editForm">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Edit Data</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">User Name</span>
-                            </div>
-                            <input type="text" id="uName" name="username" class="form-control" required placeholder="enter username" />
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success" id="saveButton">Save changes</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
 
     <script>
@@ -94,21 +71,32 @@
             });
 
             // Create DataTable
-            dataTable = $('#laravel_datatable').DataTable({
+            dataTable = $('#users_datatable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: SITEURL + "/home/users-list",
+                ajax: SITEURL + "/home/new-users/get",
                 columns: [{
                         data: 'id',
-                        name: 'Id'
+                        name: 'id'
                     },
                     {
                         data: 'name',
-                        name: 'Name'
+                        // data: 'full_name',
+                        name: 'name'
                     },
                     {
                         data: 'email',
-                        name: 'Email',
+                        name: 'email',
+                        autoWidth: true
+                    },
+                    {
+                        data: 'mobile_number',
+                        name: 'mobile_number',
+                        autoWidth: true
+                    },
+                    {
+                        data: 'referance_code',
+                        name: 'referance_code',
                         autoWidth: true
                     },
                     {
@@ -118,7 +106,7 @@
                         autoWidth: true,
                         orderable: false,
                         render: function(o) {
-                            return '<a class="editTS" href="javascript:void(0);" ts_Id="' + o['id'] + '"> <i class="fa fa-edit"></i> </a>'
+                            return "<a href='{!!url('/home/new-users')!!}/" + o['id'] + "' class='editTS'><i class='fa fa-edit'></i></a>"
                         },
                     },
                     {
@@ -134,52 +122,17 @@
                 ]
             });
 
-            // On click edit button
-            $('#laravel_datatable').on('click', '.editTS', function() {
-                selected_id = $(this).attr('ts_Id');
-
-                $.ajax({
-                    url: SITEURL + '/home/users-list/' + selected_id,
-                    type: "GET",
-                    success: function(result) {
-                        $('#uName').val(result.name);
-                        $('#editModal').modal('show');
-                    }
-                });
-            });
-
             // On click delete button
-            $('#laravel_datatable').on('click', '.deleteTS', function() {
+            $('#users_datatable').on('click', '.deleteTS', function() {
                 selected_id = $(this).attr('ts_Id');
                 $.ajax({
-                    url: SITEURL + '/home/users-list/delete/' + selected_id,
-                    type: "GET",
+                    url: SITEURL + '/home/new-users/' + selected_id,
+                    type: "DELETE",
                     success: function(result) {
                         dataTable.draw(false);
                     },
                     error: function(data) {
                         console.log('Error:', data);
-                    }
-                });
-            });
-
-            $('#saveButton').click(function(e) {
-                e.preventDefault();
-                // $(this).html('waiting..');
-                $.ajax({
-                    data: $('#editForm').serialize(),
-                    url: SITEURL + '/home/users-list/edit/' + selected_id,
-                    type: "POST",
-                    dataType: 'json',
-                    success: function(result) {
-                        // $(this).html('Save changes');
-                        $('#editForm').trigger("reset");
-                        $('#editModal').modal('hide');
-                        dataTable.draw(false);
-                    },
-                    error: function(data) {
-                        console.log('Error:', data);
-                        $('#saveButton').html('Save Changes');
                     }
                 });
             });

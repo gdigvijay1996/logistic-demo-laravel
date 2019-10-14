@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Mail\TestMail;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class UsersController extends Controller
@@ -23,7 +22,7 @@ class UsersController extends Controller
 
     public function usersList()
     {
-        $users = DB::table('users')->select('*');
+        $users = User::select('*');
         return datatables()->of($users)->make(true);
     }
 
@@ -44,5 +43,11 @@ class UsersController extends Controller
         // Mail::to('digvijay@logisticinfotech.co.in')->send(new TestMail($user));
         $user->delete();
         return response()->json(['success' => 'user removes successfully...!!!'], 200);
+    }
+
+
+    public function create($is_edit)
+    {
+        return view('create_edit_user', compact('is_edit'));
     }
 }

@@ -25,5 +25,6 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         \App\User::observe(\App\Observers\UserObserver::class);
+        \App\Users::observe(\App\Observers\NewUserObserver::class);
     }
 }

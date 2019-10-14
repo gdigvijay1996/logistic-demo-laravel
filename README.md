@@ -46,3 +46,7 @@
 - export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 - export XAMPP_HOME="/Applications/XAMPP"
 - export PATH="$XAMPP_HOME/bin:$PATH"
+
+
+### Logistic laravel tutorial link :
+- https://docs.google.com/document/d/1gDixVpMMWPHVFXsZr0C5UDHMFQzjnNhfLyX-cbfUfqM/edit
