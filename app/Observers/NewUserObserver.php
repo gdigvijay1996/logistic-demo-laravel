@@ -12,35 +12,26 @@ class NewUserObserver
     public function creating(Users $user)
     {
         //
-        echo 'creating calls';
-        // exit;
     }
 
     public function created(Users $user)
     {
         //
-        echo 'created calls';
-        // exit;
     }
 
     public function updating(Users $user)
     {
         //
-        echo 'updating calls';
-        // exit;
     }
 
     public function  updated(Users $user)
     {
         //
-        echo 'updated calls';
-        // exit;
     }
 
     public function saving(Users $user)
     {
         //
-        echo 'saving calls';
         $user->referance_code = $this->randomString();
     }
 
@@ -54,8 +45,6 @@ class NewUserObserver
     public function saved(Users $user)
     {
         //
-        echo 'saved calls';
-        // exit;
     }
 
     public function deleting(Users $user)
@@ -67,21 +56,15 @@ class NewUserObserver
     public function deleted(Users $user)
     {
         //
-        echo 'deleted calls';
-        // exit;
     }
 
     public function restoring(Users $user)
     {
         //
-        echo 'restoring calls';
-        // exit;
     }
 
     public function restored(Users $user)
     {
         //
-        echo 'restored calls';
-        // exit;
     }
 }
