@@ -55,7 +55,7 @@
         </table>
     </div>
 
-    <script>
+    <script type="text/javascript">
         var SITEURL = "{{URL::to('')}}";
         // var SITEURL = {{ url('/') }};
         var dataTable;

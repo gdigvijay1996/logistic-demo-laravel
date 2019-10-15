@@ -86,6 +86,12 @@
     <!-- Scripts -->
     <script type="text/javascript" language="javascript" src="{{ asset('js/app.js') }}"></script>
 
+    <!-- globally defined SITEURL variable -->
+    <script>
+        var SITEURL = "{{URL::to('')}}";
+        // var SITEURL = {{ url('/') }};
+    </script>
+
     <!-- Datatable Js ibrary -->
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>

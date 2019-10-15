@@ -1,0 +1,16 @@
+thead,
+th,
+tr,
+tfoot {
+  text-align: center;
+}
+
+a {
+  color: grey !important;
+}
+
+.page-item.active .page-link {
+  background-color: #FEDDDD !important;
+  border-color: #F98A8A !important;
+}
+

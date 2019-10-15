@@ -34,6 +34,19 @@
   (https://yajrabox.com/docs/laravel-datatables/master/installation)
 
 
+### LARAVEL MIX commmands ::
+// Run all Mix tasks...
+- npm run dev
+
+// Run all Mix tasks and minify output...
+- npm run production
+
+// Watching Assets For Changes...
+- npm run watch
+- npm run watch-poll
+
+
+
 # bash_profile export :
 
 - export ANDROID_HOME="/Users/digvijay/Library/Android/sdk"
